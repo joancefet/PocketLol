@@ -1,12 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\API",
     "\\Components",
     "\\Images",
     "\\Navigation",
     "\\Store",
     "\\Store\\Reducers"
   ],
-  "SelectedNode": "\\Components\\CurrentGame.js",
+  "SelectedNode": "\\Components\\Profil.js",
   "PreviewInSolutionExplorer": false
 }
