@@ -8,7 +8,7 @@ class CurrentGame extends React.Component {
     }
 
     _afficheCurrentGamePage() {
-        if (this.props.pseudoValide) {
+        if (this.props.pseudoValide.pseudoValide) {
             return (
                 <View style={styles.launch_page}>
                     <Text>CurrentGame page</Text>
@@ -18,7 +18,6 @@ class CurrentGame extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <View style={{ flex: 1, backgroundColor: '#f3f3f3' }}>
 
@@ -38,7 +37,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
     return {
-        pseudoValide: state.pseudoValide
+        pseudoValide: state.pseudoValide,
+        dataAccount: state.dataAccount
     }
 }
 

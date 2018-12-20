@@ -5,10 +5,10 @@ import { connect } from 'react-redux'
 class WarningFromStart extends React.Component {
 
     _warningFromStart() {
-        if (this.props.pseudoValide === false) {
+        if (this.props.pseudoValide.pseudoValide === false) {
             return (
                 <View style={styles.launch_page}>
-                    <Text>You need to add a League of Legends account to continue !</Text>
+                    <Text style={styles.text_param}>You need to add a League of Legends account to continue !</Text>
                 </View>
             )
         }
@@ -16,16 +16,22 @@ class WarningFromStart extends React.Component {
 
     render() {
         return (
-            <View>
-                {this._warningFromStart()}
-            </View>
+        <View>
+            { this._warningFromStart() }
+        </View>
             )
     }
 }
 
 const styles = StyleSheet.create({
     launch_page: {
-        alignContent: "center"
+        left: "8%",
+        marginTop: "60%",
+        width: 300,
+    },
+    text_param: {
+        textAlign: 'center',
+        fontSize: 18,
     }
 })
 

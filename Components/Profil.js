@@ -4,7 +4,8 @@ import ActionButton from 'react-native-action-button'
 import Dialog from "react-native-dialog"
 import { connect } from 'react-redux'
 import WarningFromStart from "./WarningFromStart"
-import { getSummonerBySummonerName, getLeageBySummonerId } from "../API/LolAPI"
+import { getSummonerBySummonerName, getLeageBySummonerId, getMatchsByAccountId } from "../API/LolAPI"
+import LoadGame from "./LoadGame"
 
 const Item = Picker.Item
 
@@ -12,7 +13,9 @@ const Item = Picker.Item
 class Profil extends React.Component {
     constructor(props) {
         super(props)
+        this.index10 = 10,
         this.state = {
+            games: [],
             pseudo: "",
             summonerLevel: 0,
             profileIconId: 0,
@@ -39,7 +42,6 @@ class Profil extends React.Component {
 
     _resetAllpreviousVariable() {
         this.setState({
-            pseudo: "",
             summonerLevel: 0,
             profileIconId: 0,
             accountId: 0,
@@ -56,7 +58,6 @@ class Profil extends React.Component {
             leagueIdSolo: "",
             tierSolo: "",
             leaguePointsSolo: 0,
-            server: "EUW1",
         })
     }
 
@@ -70,7 +71,9 @@ class Profil extends React.Component {
     _loadSummoner() {
         //on reset toute les variables pour repartir sur un nouveau profil et ne pas garder les infos des profils précédents en mémoire.
         this._resetAllpreviousVariable()
+        //appel API League of legends
         getSummonerBySummonerName(this.state.pseudo, this.state.server).then(data => {
+            //on verifie que le profil existe sur l'api et on recup les champs qui nous interesse
             if (data.name === undefined) {
                 Alert.alert("Pseudo incorrect")
                 const action = { type: "PSEUDO_IS_INVALIDE", value: -1 }
@@ -85,11 +88,14 @@ class Profil extends React.Component {
                 })
                 const action = { type: "PSEUDO_IS_VALIDE", value: 1 }
                 this.props.dispatch(action)
+                //on ajoute les variables pseudo, id, accountId & server dans le store sous le nom de pseudoUsed et serverUsed. Comme ça on y a accès dans tout nos components
+                this.props.dispatch({ type: "ADD_INFO_ACCOUNT", textPseudo: this.state.pseudo, textId: this.state.id, textAccountId: this.state.accountId, textServerUsed: this.state.server })
             }
         })
     }
 
     //on vérifie que le state a été update et l'appli re-rendu
+   
     componentDidUpdate(prevProps, prevState) {
         if (this.state.id !== prevState.id)
             this._loadLeague()
@@ -98,7 +104,7 @@ class Profil extends React.Component {
 
     //on récupère les infos du profil via l'id du compte
     _loadLeague() {
-        getLeageBySummonerId(this.state.id).then(data => {
+        getLeageBySummonerId(this.state.id, this.state.server).then(data => {
             var i = 0;
             while (i < 3) {
                 if (data[i] !== undefined) {
@@ -150,37 +156,34 @@ class Profil extends React.Component {
                 <Text> You are currently on fire !!</Text>
                 )
         }
-        else
-            return (
-                <Text>You need to rise..</Text>
-                )
     }
 
 
     _afficheProfilPage() {
-        if (this.props.pseudoValide) {
+        if (this.props.pseudoValide.pseudoValide) {
             return (
                 <View style={styles.launch_page}>
                     <Image
-                        style={{ width: 50, height: 50 }}
-                        source={{ uri: 'http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/' + this.state.profileIconId + '.png'}}
+                        style={{ width: 100, height: 100 }}
+                        source={{ uri: 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/' + this.state.profileIconId + '.jpg'}}
                     />
-                    <Text>Pseudo : {this.state.pseudo}</Text>
+                    <Text>Pseudo : {this.props.dataAccount.pseudoUsed}</Text>
                     <Text>Level : {this.state.summonerLevel}</Text>
-                    <Text>Id : {this.state.id}</Text>
-                    <Text>On fire ? : {this._onFire()}</Text>
+                    <Text>accountId : {this.props.dataAccount.accountIdUsed}</Text>
+                    <Text>Id : {this.props.dataAccount.idUsed}</Text>
+                    <Text>{this._onFire()}</Text>
                     <Text>Tier : {this.state.tierSolo}</Text>
                     <Text>Rank : {this.state.rankSolo}</Text>
                     <Text>Points : {this.state.leaguePointsSolo}</Text>
+                    <Text>{this.state.winsSolo}V {this.state.lossesSolo}D</Text>
+                    <Text>Win Ratio {Math.round((this.state.winsSolo / (this.state.winsSolo + this.state.lossesSolo)) * 100)}%</Text>
+                    {/*<LoadGame/>*/}
                 </View>
             )
         }
     }
 
     render() {
-        //console.log(this.props);
-        console.log(this.state);
-
         return (
             <View style={{ flex: 1, backgroundColor: '#f3f3f3' }}>
 
@@ -244,8 +247,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     return {
         pseudoValide: state.pseudoValide,
-        //pseudo: state.pseudo,
-        //server: state.server
+        dataAccount: state.dataAccount
     }
 }
 

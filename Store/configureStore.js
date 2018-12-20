@@ -1,4 +1,4 @@
 import { createStore } from 'redux';
-import pseudoValide from './Reducers/pseudoValideReducer'
+import reducers from './Reducers/index'
 
-export default createStore(pseudoValide)
+export default createStore(reducers)

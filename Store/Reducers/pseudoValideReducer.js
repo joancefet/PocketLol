@@ -1,4 +1,6 @@
-const initialState = { pseudoValide: false }
+const initialState = {
+    pseudoValide: false
+}
 
 function pseudoValide(state = initialState, action) {
     let nextState

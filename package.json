@@ -13,10 +13,14 @@
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-action-button": "^2.8.5",
+    "react-native-charts": "^3.0.0",
     "react-native-dialog": "^5.4.0",
+    "react-native-elements": "^0.19.1",
     "react-native-modal-dialog": "^1.2.3",
+    "react-native-svg": "^8.0.2",
     "react-navigation": "^2.18.0",
     "react-redux": "^5.0.7",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "victory-native": "^30.5.0"
   }
 }

@@ -4,10 +4,11 @@
     "\\API",
     "\\Components",
     "\\Images",
+    "\\Images\\roles",
     "\\Navigation",
     "\\Store",
     "\\Store\\Reducers"
   ],
-  "SelectedNode": "\\Components\\Profil.js",
+  "SelectedNode": "\\Components\\LoadHistorique.js",
   "PreviewInSolutionExplorer": false
 }
