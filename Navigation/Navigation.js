@@ -1,7 +1,6 @@
 import { createMaterialTopTabNavigator } from "react-navigation"
 import Profil from "../Components/Profil"
 import Historique from "../Components/Historique"
-import CurrentGame from "../Components/CurrentGame"
 
 const MainTabNavigator = createMaterialTopTabNavigator({
     Profil: {
@@ -22,15 +21,6 @@ const MainTabNavigator = createMaterialTopTabNavigator({
             }
         }   
     },
-    CurrentGame: {
-        screen: CurrentGame,
-        navigationOptions: {
-            title: "CurrentGame",
-            style: {
-                marginTop: 22,
-            }
-        }  
-    }
 })
 
 export default MainTabNavigator

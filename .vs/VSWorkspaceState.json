@@ -3,12 +3,10 @@
     "",
     "\\API",
     "\\Components",
-    "\\Images",
-    "\\Images\\roles",
     "\\Navigation",
     "\\Store",
     "\\Store\\Reducers"
   ],
-  "SelectedNode": "\\Components\\LoadHistorique.js",
+  "SelectedNode": "\\API\\LolAPI.js",
   "PreviewInSolutionExplorer": false
 }

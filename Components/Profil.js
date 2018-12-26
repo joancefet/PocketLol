@@ -1,11 +1,13 @@
 import React from "react"
-import { View, Text, StyleSheet, Picker, Image, Alert } from "react-native"
+import { View, Text, StyleSheet, Picker, Image, Alert, ScrollView } from "react-native"
 import ActionButton from 'react-native-action-button'
 import Dialog from "react-native-dialog"
 import { connect } from 'react-redux'
 import WarningFromStart from "./WarningFromStart"
 import { getSummonerBySummonerName, getLeageBySummonerId, getMatchsByAccountId } from "../API/LolAPI"
-import LoadGame from "./LoadGame"
+import EnteteProfil from "./entete_profil"
+import RankImage from "./rank_image"
+import PolarChart from "./PolarChart"
 
 const Item = Picker.Item
 
@@ -21,19 +23,22 @@ class Profil extends React.Component {
             profileIconId: 0,
             accountId: 0,
             id: 0,
-            //----------------
-            queueTypeSolo: "",
+            //-----------SOLO
             hotStreakSolo: false,
             winsSolo: 0,
             veteranSolo: false,
             lossesSolo: 0,
-            leagueNameSolo: "",
-            inactiveSolo: false,
             rankSolo: "",
-            freshBloodSolo: false,
-            leagueIdSolo: "",
             tierSolo: "",
             leaguePointsSolo: 0,
+            //----------FLEX
+            hotStreakFlex: false,
+            winsFlex: 0,
+            veteranFlex: false,
+            lossesFlex: 0,
+            rankFlex: "",
+            tierFlex: "",
+            leaguePointsFlex: 0,
             //---------------
             popupVisible: false,
             server: "EUW1",
@@ -46,18 +51,22 @@ class Profil extends React.Component {
             profileIconId: 0,
             accountId: 0,
             id: 0,
-            queueTypeSolo: "",
+            //-----------SOLO
             hotStreakSolo: false,
             winsSolo: 0,
             veteranSolo: false,
             lossesSolo: 0,
-            leagueNameSolo: "",
-            inactiveSolo: false,
             rankSolo: "",
-            freshBloodSolo: false,
-            leagueIdSolo: "",
             tierSolo: "",
             leaguePointsSolo: 0,
+            //----------FLEX
+            hotStreakFlex: false,
+            winsFlex: 0,
+            veteranFlex: false,
+            lossesFlex: 0,
+            rankFlex: "",
+            tierFlex: "",
+            leaguePointsFlex: 0,
         })
     }
 
@@ -84,7 +93,8 @@ class Profil extends React.Component {
                     summonerLevel: data.summonerLevel,
                     profileIconId: data.profileIconId,
                     accountId: data.accountId,
-                    id: data.id
+                    id: data.id,
+                    pseudo: data.name
                 })
                 const action = { type: "PSEUDO_IS_VALIDE", value: 1 }
                 this.props.dispatch(action)
@@ -110,18 +120,24 @@ class Profil extends React.Component {
                 if (data[i] !== undefined) {
                     if (data[i].queueType === "RANKED_SOLO_5x5") {
                         this.setState({
-                            queueTypeSolo: data[i].queueType,
                             hotStreakSolo: data[i].hotStreak,
                             winsSolo: data[i].wins,
                             veteranSolo: data[i].veteran,
                             lossesSolo: data[i].losses,
-                            leagueNameSolo: data[i].leagueName,
-                            inactiveSolo: data[i].inactive,
                             rankSolo: data[i].rank,
-                            freshBloodSolo: data[i].freshBlood,
-                            leagueIdSolo: data[i].leagueId,
                             tierSolo: data[i].tier,
                             leaguePointsSolo: data[i].leaguePoints
+                        })
+                    }
+                    if (data[i].queueType == "RANKED_FLEX_SR") {
+                        this.setState({
+                            hotStreakFlex: data[i].hotStreak,
+                            winsFlex: data[i].wins,
+                            veteranFlex: data[i].veteran,
+                            lossesFlex: data[i].losses,
+                            rankFlex: data[i].rank,
+                            tierFlex: data[i].tier,
+                            leaguePointsFlex: data[i].leaguePoints
                         })
                     }
                 }
@@ -150,34 +166,134 @@ class Profil extends React.Component {
     }
     //----------------------------------------------
 
-    _onFire() {
-        if (this.state.hotStreakSolo === true) {
+    _bonus_streak(streak) {
+        if (streak === true) {
             return (
-                <Text> You are currently on fire !!</Text>
+                <Text style={{
+                    height: 16, width: 45, textAlign: "center", color: "white", fontSize: 11, letterSpacing: -0.1, backgroundColor: "#42B289",
+                    borderWidth: 1, borderRadius: 4, borderColor: "#42B289", marginLeft: 1, marginRight: 1
+                }}
+                >on fire</Text>
                 )
         }
     }
 
+    _bonus_winrate(winrate, totalGames) {
+        if (winrate >= 60) {
+            return (
+                <Text style={{
+                    height: 16, width: 55, textAlign: "center", color: "white", fontSize: 11, letterSpacing: -0.1, backgroundColor: "#42B289",
+                    borderWidth: 1, borderRadius: 4, borderColor: "#42B289", marginLeft: 1, marginRight: 1
+                }}
+                >smurfing</Text>
+            )
+        }
+        if (winrate < 60 && winrate >= 54) {
+            return (
+                <Text style={{
+                    height: 16, width: 35, textAlign: "center", color: "white", fontSize: 11, letterSpacing: -0.1, backgroundColor: "#42B289",
+                    borderWidth: 1, borderRadius: 4, borderColor: "#42B289", marginLeft: 1, marginRight: 1
+                }}
+                >good</Text>
+            )
+        }
+        if (winrate < 49 && winrate > 45 && totalGames > 40) {
+            return (
+                <Text style={{
+                    height: 16, width: 40, textAlign: "center", color: "white", fontSize: 11, letterSpacing: -0.1, backgroundColor: "#E74C3C",
+                    borderWidth: 1, borderRadius: 4, borderColor: "#E74C3C", marginLeft: 1, marginRight: 1
+                }}
+                >icare</Text>
+            )
+        }
+        if (winrate <= 45 && totalGames > 40) {
+            return (
+                <Text style={{
+                    height: 16, width: 35, textAlign: "center", color: "white", fontSize: 11, letterSpacing: -0.1, backgroundColor: "#E74C3C",
+                    borderWidth: 1, borderRadius: 4, borderColor: "#E74C3C", marginLeft: 1, marginRight: 1
+                }}
+                >bad</Text>
+            )
+        }
+    }
+
+    _bonus_veteran(veteran) {
+        if (veteran === true) {
+            return (
+                <Text style={{
+                    height: 16, width: 52, textAlign: "center", color: "white", fontSize: 11, letterSpacing: -0.1, backgroundColor: "#E74C3C",
+                    borderWidth: 1, borderRadius: 4, borderColor: "#E74C3C", marginLeft: 1, marginRight: 1
+                }}
+                >veteran</Text>
+            )
+        }
+    }
+
+    _calcul_winratio(win, defeat) {
+        if (isNaN(Math.round((win / (win + defeat)) * 100)))
+            return "--"
+        else
+            return Math.round((win / (win + defeat)) * 100)
+    }
+
+    _unranked(tier) {
+        if (tier == "")
+            return "UNRANKED"
+    }
+
+    _affiche_SoloqRank() {
+        return (
+            <View style={{ flex: 1 }}>
+                <RankImage tier={this.state.tierSolo} rank={this.state.rankSolo}/>
+                <Text style={{ flex: 1, textAlign: "center", fontWeight: "bold" }}>{this.state.tierSolo} {this.state.rankSolo}{this._unranked(this.state.tierSolo)}</Text>
+                <Text style={{ flex: 1, textAlign: "center", fontWeight: "bold" }}>{this.state.leaguePointsSolo} LP</Text>
+                <Text style={{ flex: 1, textAlign: "center", fontWeight: "bold" }}>{this.state.winsSolo}V {this.state.lossesSolo}D</Text>
+                <Text style={{ flex: 1, textAlign: "center", fontWeight: "bold" }}>SOLO Q</Text>
+                <Text style={{ flex: 1, textAlign: "center", fontWeight: "bold" }}>Win Ratio {this._calcul_winratio(this.state.winsSolo, this.state.lossesSolo)}%</Text>
+                <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center' }}>
+                    {this._bonus_streak(this.state.hotStreakSolo)}
+                    {this._bonus_winrate((Math.round((this.state.winsSolo / (this.state.winsSolo + this.state.lossesSolo)) * 100)), (this.state.winsSolo + this.state.lossesSolo))}
+                    {this._bonus_veteran(this.state.veteranSolo)}
+                    <Text> </Text>
+                </View>
+            </View>
+            )
+    }
+
+    _affiche_FlexRank() {
+        return (
+            <View style={{ flex: 1, alignSelf: "center"}}>
+                <RankImage tier={this.state.tierFlex} rank={this.state.rankFlex}/>
+                <Text style={{ flex: 1, textAlign: "center", fontWeight: "bold" }}>{this.state.tierFlex} {this.state.rankFlex}{this._unranked(this.state.tierFlex)}</Text>
+                <Text style={{ flex: 1, textAlign: "center", fontWeight: "bold" }}>{this.state.leaguePointsFlex} LP</Text>
+                <Text style={{ flex: 1, textAlign: "center", fontWeight: "bold" }}>{this.state.winsFlex}V {this.state.lossesFlex}D</Text>
+                <Text style={{ flex: 1, textAlign: "center", fontWeight: "bold" }}>FLEX Q</Text>
+                <Text style={{ flex: 1, textAlign: "center", fontWeight: "bold" }}>Win Ratio {this._calcul_winratio(this.state.winsFlex, this.state.lossesFlex)}%</Text>
+                <View style={{ flex: 1, flexDirection: "row", justifyContent: 'center' }}>
+                    {this._bonus_streak(this.state.hotStreakFlex, (Math.round((this.state.winsFlex / (this.state.winsFlex + this.state.lossesFlex)) * 100)), this.state.veteranFlex, (this.state.winsFlex + this.state.lossesFlex))}
+                    {this._bonus_winrate((Math.round((this.state.winsFlex / (this.state.winsFlex + this.state.lossesFlex)) * 100)), (this.state.winsFlex + this.state.lossesFlex))}
+                    {this._bonus_veteran(this.state.veteranFlex)}
+                    <Text> </Text>
+                </View>
+            </View>
+        )
+    }
 
     _afficheProfilPage() {
         if (this.props.pseudoValide.pseudoValide) {
             return (
-                <View style={styles.launch_page}>
-                    <Image
-                        style={{ width: 100, height: 100 }}
-                        source={{ uri: 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/' + this.state.profileIconId + '.jpg'}}
-                    />
-                    <Text>Pseudo : {this.props.dataAccount.pseudoUsed}</Text>
-                    <Text>Level : {this.state.summonerLevel}</Text>
-                    <Text>accountId : {this.props.dataAccount.accountIdUsed}</Text>
-                    <Text>Id : {this.props.dataAccount.idUsed}</Text>
-                    <Text>{this._onFire()}</Text>
-                    <Text>Tier : {this.state.tierSolo}</Text>
-                    <Text>Rank : {this.state.rankSolo}</Text>
-                    <Text>Points : {this.state.leaguePointsSolo}</Text>
-                    <Text>{this.state.winsSolo}V {this.state.lossesSolo}D</Text>
-                    <Text>Win Ratio {Math.round((this.state.winsSolo / (this.state.winsSolo + this.state.lossesSolo)) * 100)}%</Text>
-                    {/*<LoadGame/>*/}
+                <View>
+                    <ScrollView>
+                        <EnteteProfil image={this.state.profileIconId} />
+                        <View style={styles.container_rank}>
+                            {this._affiche_SoloqRank()}
+                            <View
+                                style={{ width: 1, height: "60%", backgroundColor: "#555E5E", marginLeft: "1%", marginRight: "1%", alignSelf: "center" }}
+                        />
+                            {this._affiche_FlexRank()}
+                        </View>
+                        <PolarChart/>
+                    </ScrollView>
                 </View>
             )
         }
@@ -185,7 +301,7 @@ class Profil extends React.Component {
 
     render() {
         return (
-            <View style={{ flex: 1, backgroundColor: '#f3f3f3' }}>
+            <View style={{ flex: 1, backgroundColor: "#EAEAEA" }}>
 
                 {/* On gère l'affichage de la page Profil suivant si l'utilisateur a rentrer un pseudo ou pas*/}
                 <WarningFromStart/>
@@ -223,7 +339,9 @@ class Profil extends React.Component {
                 {/* Rest of the app comes ABOVE the action button component !*/}
                 <ActionButton
                     buttonColor="#3c82e7"
-                    size={65}
+                    offsetX={20}
+                    offsetY={20}
+                    size={64}
                     onPress={this._showPopup}
                 >
                 </ActionButton>
@@ -240,6 +358,11 @@ const styles = StyleSheet.create({
     },
     picker_server: {
         marginLeft: 9
+    },
+    container_rank: {
+        flex: 1,
+        flexDirection: "row",
+        marginTop: 8,
     }
    
 })
@@ -247,7 +370,9 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     return {
         pseudoValide: state.pseudoValide,
-        dataAccount: state.dataAccount
+        dataAccount: state.dataAccount,
+        variableForChart: state.variableForChart,
+        gamesNumber: state.gamesNumber,
     }
 }
 
