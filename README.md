@@ -15,7 +15,7 @@ Step 2:
 ![alt text](https://nsa39.casimages.com/img/2019/01/04/190104052502506173.jpg)
 
 Step 3:
-(if no game has been played during the year, a prevention message will appear in place of the graph)
+(if less than 10 games or no game has been played during the year, a prevention message will appear in place of the graph)
 
 ![alt text](https://nsa39.casimages.com/img/2019/01/04/190104053134390685.jpg)
 ![alt text](https://nsa39.casimages.com/img/2019/01/04/190104053839413674.jpg)
