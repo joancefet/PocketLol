@@ -10,16 +10,18 @@ Step 1:
 ![alt text](https://nsa39.casimages.com/img/2019/01/04/190104052619840623.jpg)
 
 Step 2:
-
+(you have to add your League of Legends nickname and the server on which you are registered. - case insensitivity)
 
 ![alt text](https://nsa39.casimages.com/img/2019/01/04/190104052502506173.jpg)
 
 Step 3:
+(if no game has been played during the year, a prevention message will appear in place of the graph)
 
 ![alt text](https://nsa39.casimages.com/img/2019/01/04/190104053134390685.jpg)
 ![alt text](https://nsa39.casimages.com/img/2019/01/04/190104053839413674.jpg)
 
 Step 4:
+(you can observe your history, scroll to see more and click on the icons at the bottom to sort the display of history by role)
 
 ![alt text](https://nsa39.casimages.com/img/2019/01/04/190104053251185208.jpg)
 ![alt text](https://nsa39.casimages.com/img/2019/01/04/190104053308333298.jpg)
