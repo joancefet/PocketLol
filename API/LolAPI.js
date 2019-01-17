@@ -1,3 +1,4 @@
+//API KEY from league of legends
 const API_TOKEN = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 
 export function getSummonerBySummonerName(name, server) {
