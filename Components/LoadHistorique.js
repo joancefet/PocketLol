@@ -228,6 +228,14 @@ class LoadHistorique extends React.PureComponent {
                 />
             )
         }
+        else {
+            return (
+                <Image
+                    source={require("../Images/spells/shield.png")}
+                    style={{ flex: 1, width: 45, height: 45 }}
+                />
+            )
+        }
     }
 
     _getSpells2() {
@@ -292,6 +300,14 @@ class LoadHistorique extends React.PureComponent {
             return (
                 <Image
                     source={require("../Images/spells/tp.png")}
+                    style={{ flex: 1, width: 45, height: 45 }}
+                />
+            )
+        }
+        else {
+            return (
+                <Image
+                    source={require("../Images/spells/shield.png")}
                     style={{ flex: 1, width: 45, height: 45 }}
                 />
             )
@@ -543,7 +559,7 @@ class LoadHistorique extends React.PureComponent {
                             <View style={styles.container_summs_spell2}>{this._getSpells2()}</View>
                         </View>
                     </View>
-                    {/*container droit info de la partie en général*/}
+                    {/*container droit info de la partie en gÃ©nÃ©ral*/}
                     <View style={styles.container_right}>
                         <View style={this.win == true ? styles.container_top_win : styles.container_top_defeat}>
                             <Text style={{ flex: 1, textAlign: "center" }}>{this._typeGame()}</Text>
@@ -580,7 +596,7 @@ class LoadHistorique extends React.PureComponent {
                                     {this._affiche_items(this.item5)}
                                 </View>
                             </View>
-                            {/*  partie avec les stats perso par rapport à la teams*/}
+                            {/*  partie avec les stats perso par rapport Ã  la teams*/}
                             <View style={styles.container_stats_jeu}>
                                 <View style={{ flex: 1 }} />
                                 <Text style={{ flex: 1 }}>{this._affiche_level()}</Text>
@@ -589,7 +605,7 @@ class LoadHistorique extends React.PureComponent {
                                 {this._affiche_damageParticipation()}
                                 <Text style={{ flex: 1 }}>{this._affiche_visionScore()}</Text>
                             </View>
-                            {/* partie de séparation*/}
+                            {/* partie de sÃ©paration*/}
                             <View
                                 style={this.win == true ? { width: 1, height: "100%", backgroundColor: "#4aa1d2", marginLeft: "1%", marginRight: "1%" } : { width: 1, height: "100%", backgroundColor: "#d67b77", marginLeft: "1%", marginRight: "1%"}}
                             />
