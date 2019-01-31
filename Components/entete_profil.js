@@ -1,50 +1,83 @@
-import React from "react"
-import { View, Text, StyleSheet, Picker, Image, Alert, ScrollView } from "react-native"
-import { connect } from 'react-redux'
+import React from 'react';
+import {
+  View, Text, StyleSheet, Image,
+} from 'react-native';
+import { connect } from 'react-redux';
 
-class EnteteProfil extends React.Component {
+const cupImage = require('../Images/cup/cup.png');
 
-    render () {
-        return (
-            <View style={styles.container_entete}>
-                <Image
-                    style={{ flex: 1.2, marginTop: 5, marginBottom: 5, width: 100, height: 100 }}
-                    source={require("../Images/cup/cup.png")}
-                />
-                <View style={{ flex: 1}}>
-                    <Image
-                        style={{ width: 100, height: 100, borderWidth: 1,  borderColor: "#EABD53" }}
-                        source={{ uri: 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/' + this.props.image + '.jpg' }}
-                    />
-                    <Text style={{ width: 100, textAlign: "center", color: "#EABD53", fontSize: 12, letterSpacing: -0.2, backgroundColor: "#2C3548", borderWidth: 1, borderRadius: 20, borderColor: "#EABD53", marginTop: -7 }}>{this.props.dataAccount.pseudoUsed}</Text>
+class EnteteProfil extends React.PureComponent {
+  render() {
+    return (
+      <View style={styles.container_entete}>
+        <Image
+          style={styles.cup_image}
+          source={cupImage}
+        />
+        <View style={styles.container_image_profil}>
+          <Image
+            style={styles.container_image}
+            source={{ uri: `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${this.props.image}.jpg` }}
+          />
+          <Text style={styles.container_pseudo}>
+            {this.props.dataAccount.pseudoUsed}
+          </Text>
 
-                </View>
-               
-                <Image
-                    style={{ flex: 1.2, marginTop: 5, marginBottom: 5, width: 100, height: 100 }}
-                    source={require("../Images/cup/cup.png")}
-                />
-            </View>
-            )
-    }
+        </View>
+
+        <Image
+          style={styles.cup_image}
+          source={cupImage}
+        />
+      </View>
+    );
+  }
 }
 
+const colorDarkBlue = '#2C3548';
+const colorYellow = '#EABD53';
 const styles = StyleSheet.create({
-    container_entete: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: "center"
-    }
-})
+  container_entete: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  container_image: {
+    borderColor: colorYellow,
+    borderWidth: 1,
+    height: 100,
+    width: 100,
+  },
+  container_image_profil: {
+    flex: 1,
+  },
+  container_pseudo: {
+    backgroundColor: colorDarkBlue,
+    borderColor: colorYellow,
+    borderRadius: 20,
+    borderWidth: 1,
+    color: colorYellow,
+    fontSize: 12,
+    letterSpacing: -0.2,
+    marginTop: -7,
+    textAlign: 'center',
+    width: 100,
+  },
+  cup_image: {
+    flex: 1.2,
+    height: 100,
+    marginBottom: 5,
+    marginTop: 5,
+    width: 100,
+  },
+});
 
 
-const mapStateToProps = (state) => {
-    return {
-        pseudoValide: state.pseudoValide,
-        dataAccount: state.dataAccount,
-        nbItems: state.nbItems,
-        nbEliminating: state.nbEliminating,
-    }
-}
+const mapStateToProps = state => ({
+  pseudoValide: state.pseudoValide,
+  dataAccount: state.dataAccount,
+  nbItems: state.nbItems,
+  nbEliminating: state.nbEliminating,
+});
 
-export default connect(mapStateToProps)(EnteteProfil)
+export default connect(mapStateToProps)(EnteteProfil);

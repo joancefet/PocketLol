@@ -1,14 +1,14 @@
 import React from 'react';
-import Navigation from "./Navigation/Navigation"
-import { Provider } from "react-redux"
-import Store from "./Store/configureStore"
+import { Provider } from 'react-redux';
+import Navigation from './Navigation/Navigation';
+import Store from './Store/configureStore';
 
-export default class App extends React.Component {
+export default class App extends React.PureComponent {
   render() {
-      return (
-          <Provider store={Store}>
-              <Navigation />
-          </Provider>
-    )
+    return (
+      <Provider store={Store}>
+        <Navigation />
+      </Provider>
+    );
   }
 }

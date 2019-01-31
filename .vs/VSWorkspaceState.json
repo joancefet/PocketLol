@@ -3,10 +3,14 @@
     "",
     "\\API",
     "\\Components",
+    "\\Firebase",
+    "\\Font",
+    "\\Images",
+    "\\Images\\spells",
     "\\Navigation",
     "\\Store",
     "\\Store\\Reducers"
   ],
-  "SelectedNode": "\\API\\LolAPI.js",
+  "SelectedNode": "\\Components\\Account.js",
   "PreviewInSolutionExplorer": false
 }
