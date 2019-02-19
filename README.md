@@ -33,6 +33,7 @@ Have fun :)
 -------------------------------------
 
 adding the Firebase part with the user management:
+
 ! this part is not completed and consists more of a firebase installation test !
 
 Step 6:
