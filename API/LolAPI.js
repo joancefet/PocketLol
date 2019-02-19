@@ -1,4 +1,4 @@
-const API_TOKEN = 'RGAPI-12d1ef89-9747-42cf-ab35-8f5e4b7720ab';
+const API_TOKEN = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 
 export function getSummonerBySummonerName(name, server) {
   const url = `https://${server}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${name}?api_key=${API_TOKEN}`;
