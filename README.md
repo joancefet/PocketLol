@@ -24,8 +24,8 @@ Step 3:
 Step 4:
 (you can observe your history, scroll to see more and click on the icons at the bottom to sort the display of history by role)
 
-![alt text](https://nsa39.casimages.com/img/2019/01/04/190104053251185208.jpg)
-![alt text](https://nsa39.casimages.com/img/2019/01/04/190104053308333298.jpg)
+![alt text](https://nsa40.casimages.com/img/2019/02/19/190219102109106867.jpg)
+![alt text](https://nsa40.casimages.com/img/2019/02/19/190219102109483000.jpg)
 
 Step 5:
 Have fun :)
