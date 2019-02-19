@@ -6,7 +6,7 @@ class Firebase {
      */
   static initialise() {
     firebase.initializeApp({
-      apiKey: 'AIzaSyDrVNf3fr2EpAFSuSMBK6h0RUFyyYM-0JQ',
+      apiKey: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx',
       authDomain: 'pocketlol.firebaseapp.com',
       databaseURL: 'https://pocketlol.firebaseio.com',
       projectId: 'pocketlol',
