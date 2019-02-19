@@ -19,6 +19,7 @@ Step 3:
 
 ![alt text](https://nsa39.casimages.com/img/2019/01/04/190104053134390685.jpg)
 ![alt text](https://nsa39.casimages.com/img/2019/01/04/190104053839413674.jpg)
+![alt text](https://www.casimages.com/i/190219101507174327.jpg.html)
 
 Step 4:
 (you can observe your history, scroll to see more and click on the icons at the bottom to sort the display of history by role)
