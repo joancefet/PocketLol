@@ -18,7 +18,7 @@ const yesImage = require('../Images/validate/yes.png');
 const noImage = require('../Images/validate/no.png');
 const noneImage = require('../Images/item_none/none.png');
 
-class LoadHistorique extends React.Component {
+class LoadHistorique extends React.PureComponent {
   constructor(props) {
     super(props);
     this.ddragonVersion = 0;

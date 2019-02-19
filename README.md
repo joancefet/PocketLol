@@ -2,44 +2,7 @@
 a League of Legends app to check your profil and your results from the game.
 Also available : an analysis of the last 10 games for each profil.
 
-## Build the project
-
-First of all, you need to have node and npm installed on your computer.
-If you don't, check this : https://www.npmjs.com/get-npm
-
-After that, you have to go on the root of this project and run this command:
-```bash
-npm install
-```
-This command will install all the dependencies of this project.
-
-Now, you have to install eslint and all his dependencies:
-```bash
-npm install -g eslint
-npm install -g babel-eslint
-npm install -g eslint-config-airbnb
-npm install -g eslint-plugin-import
-npm install -g eslint-plugin-jsx-a11y
-npm install -g eslint-plugin-react
-npm install -g eslint-plugin-react-native
-```
-
-And finally, you have to install Expo:
-```bash
-npm install -g expo-cli
-```
-
-## Deploy the project
-
-To deploy this project, you have to run this command:
-```bash
-expo start
-```
-
-Finally, grab your phone, connect it to the same network than your computer, scan the QR code this your Expo mobile app and enjoy :)
-
-
-## Use the project
+Preview of the app :
 
 Step 1:
 (you have to press the blue button at the bottom right of the screen to add an account)
