@@ -47,6 +47,6 @@ Step 7:
 ![alt text](https://nsa40.casimages.com/img/2019/02/19/190219103106716053.jpg)
 
 Step 8:
-(by clicking on the camera you can take a picture and put it in profile picture!)
+(by clicking on the camera icon you can take a picture and put it in profile picture!)
 
 ![alt text](https://nsa40.casimages.com/img/2019/02/19/190219103129160662.jpg)
