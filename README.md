@@ -29,3 +29,23 @@ Step 4:
 
 Step 5:
 Have fun :)
+
+-------------------------------------
+
+adding the Firebase part with the user management:
+! this part is not completed and consists more of a firebase installation test !
+
+Step 6:
+(you can create an account or register if you already have one)
+
+![alt text](https://nsa40.casimages.com/img/2019/02/19/190219103128989260.jpg)
+
+Step 7:
+(once logged in, you can save your phone number to your account, choose a new profile picture, or sign out. Your position is also retrieved and displayed by the app.)
+
+![alt text](https://nsa40.casimages.com/img/2019/02/19/190219103106716053.jpg)
+
+Step 8:
+(by clicking on the camera you can take a picture and put it in profile picture!)
+
+![alt text](https://nsa40.casimages.com/img/2019/02/19/190219103129160662.jpg)
