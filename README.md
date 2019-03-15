@@ -6,7 +6,7 @@ concepts used:
 - Redux
 - Navigation
 - Fetch
-- AP League of Legends
+- API League of Legends
 - Flexbox
 - Firebase (Auth, database, storage)
 - Permissions Device (Camera + Location)
