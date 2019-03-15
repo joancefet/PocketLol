@@ -2,6 +2,16 @@
 a League of Legends app to check your profil and your results from the game.
 Also available : an analysis of the last 10 games for each profil.
 
+concepts used:
+- Redux
+- Navigation
+- Fetch
+- AP League of Legends
+- Flexbox
+- Firebase (Auth, database, storage)
+- Permissions Device (Camera + Location)
+- ESLint
+
 Preview of the app :
 
 Step 1:
